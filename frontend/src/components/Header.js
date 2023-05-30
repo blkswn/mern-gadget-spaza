@@ -19,6 +19,9 @@ const dispatch = useDispatch()
 const userLogin = useSelector(state => state.userLogin)
 const { userInfo } = userLogin
 
+const cart = useSelector(state => state.cart)
+const { cartItems } = cart
+
 const  logoutHandler = () => {
   dispatch(logout())
 }
@@ -37,7 +40,11 @@ const  logoutHandler = () => {
           <Nav className="ms-auto">
 
           <LinkContainer to='/cart'>
-            <Nav.Link><i className='fas fa-shopping-cart'></i> Cart</Nav.Link>
+            <Nav.Link><i className='fas fa-shopping-cart'></i> Cart{' '}
+            {cartItems.length > 0 && (
+              <span className='badge bg-secondary'>{cartItems.length}</span>
+            )}
+            </Nav.Link>
             </LinkContainer>
 
             {userInfo ? (

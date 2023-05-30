@@ -118,6 +118,8 @@ const ProfileScreen = () => {
         )}
       </Col>
       <Col md={9}>
+        {orders && orders.length > 0 ? (
+          <>
         <h2>My Orders</h2>
         {loadingOrders ? (
           <Loader />
@@ -168,6 +170,10 @@ const ProfileScreen = () => {
             </tbody>
           </Table>
         )}
+</>
+  ) : (
+    <Message variant='info'>No orders found</Message>
+  )}
       </Col>
     </Row>
   )

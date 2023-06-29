@@ -205,9 +205,9 @@ const OrderScreen = () => {
                   <form action='https://sandbox.payfast.co.za​/eng/process' method='post'>
                     <input type='hidden' name='merchant_id' value='10029993' />
                     <input type='hidden' name='merchant_key' value='c95kh22hfchfw'/>
-                    <input type="hidden" name="return_url" value={`http://localhost:3000/order/${order._id}`}/>
-                    <input type="hidden" name="cancel_url" value={`http://localhost:3000/order/${order._id}`}/>
-                    <input type="hidden" name="notify_url" value={`http://localhost:5000/api/orders/${order._id}/payfast`}/>
+                    <input type="hidden" name="return_url" value={`https://store-gadget-spaza.onrender.com/order/${order._id}`}/>
+                    <input type="hidden" name="cancel_url" value={`https://store-gadget-spaza.onrender.com/order/${order._id}`}/>
+                    <input type="hidden" name="notify_url" value={`https://store-gadget-spaza.onrender.com/api/orders/${order._id}/payfast`}/>
                     <input type='hidden' name='amount' value={order.totalPrice.toFixed(2)} />
                     <input type='hidden' name='item_name' value='Test Product' />
                     <input

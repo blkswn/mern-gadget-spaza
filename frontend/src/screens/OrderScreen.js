@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import dotenv from 'dotenv'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -205,11 +206,11 @@ const OrderScreen = () => {
                   <form action='https://sandbox.payfast.co.za​/eng/process' method='post'>
                     <input type='hidden' name='merchant_id' value='10029993' />
                     <input type='hidden' name='merchant_key' value='c95kh22hfchfw'/>
-                    <input type="hidden" name="return_url" value={`https://store-gadget-spaza.onrender.com/order/${order._id}`}/>
-                    <input type="hidden" name="cancel_url" value={`https://store-gadget-spaza.onrender.com/order/${order._id}`}/>
-                    <input type="hidden" name="notify_url" value={`https://store-gadget-spaza.onrender.com/api/orders/${order._id}/payfast`}/>
+                    <input type="hidden" name="return_url" value={`https://www.gadgetspaza.co.za/order/${order._id}`}/>
+                    <input type="hidden" name="cancel_url" value={`https://www.gadgetspaza.co.za/order/${order._id}`}/>
+                    <input type="hidden" name="notify_url" value={`https://www.gadgetspaza.co.za/api/orders/${order._id}/payfast`}/>
                     <input type='hidden' name='amount' value={order.totalPrice.toFixed(2)} />
-                    <input type='hidden' name='item_name' value='Test Product' />
+                    <input type='hidden' name='item_name' value='{item.name}' />
                     <input
                             type='submit'
                             value='Pay with PayFast'

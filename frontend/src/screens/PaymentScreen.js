@@ -14,21 +14,18 @@ const PaymentScreen = () => {
 
     const dispatch = useDispatch()
 
-    if(!shippingAddress){
+    /*if(!shippingAddress){
         navigate('/shipping')
-    }
+    }*/
   
-    const [paymentMethod, setPaymentMethod] = useState('PayPal')
+    const [paymentMethod, setPaymentMethod] = useState('Payfast')
   
   
-/*     useEffect(() => {
-      if (shippingAddress) {
-        setAddress(shippingAddress.address)
-        setCity(shippingAddress.city)
-        setPostalCode(shippingAddress.postalCode)
-        setCountry(shippingAddress.country)
+    useEffect(() => {
+      if (!shippingAddress) {
+        navigate('/shipping')
       }
-    }, [shippingAddress]) */
+    }, [shippingAddress, navigate]) 
   
     const submitHandler = (e) => {
       e.preventDefault()
@@ -50,8 +47,15 @@ const PaymentScreen = () => {
                     label='PayPal or Credit Card' 
                     id='PayPal' 
                     name='paymentMethod' 
-                    value='PayPal'
-                    checked 
+                    value='PayPal' 
+                    onChange={(e) => setPaymentMethod(e.target.value)}
+                 ></Form.Check>
+                      <Form.Check 
+                    type='radio' 
+                    label='Payfast' 
+                    id='Payfast' 
+                    name='paymentMethod' 
+                    value='Payfast' 
                     onChange={(e) => setPaymentMethod(e.target.value)}
                  ></Form.Check>
 

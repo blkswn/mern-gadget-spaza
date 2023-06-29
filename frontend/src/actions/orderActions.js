@@ -101,6 +101,12 @@ export const payOrder = (orderId,  paymentResult) => async (dispatch, getState) 
             payload: data,
         })
 
+
+        dispatch({
+            type: ORDER_DETAILS_SUCCESS,
+            payload: { ...data, isPaid: true},
+        })
+
         dispatch({ type: CART_RESET });
 
 

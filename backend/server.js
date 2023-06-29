@@ -33,8 +33,8 @@ app.use('/api/orders', orderRoutes)
 app.use('/api/cart', cartRoutes)
 app.use('/api/upload', uploadRoutes)
 
-app.get('/api/config/paypal', (req, res) => 
-res.send(process.env.PAYPAL_CLIENT_ID)
+app.get('/api/config/payfast', (req, res) => 
+res.send(process.env.PAYFAST_CLIENT_ID)
 )
 
 const __dirname = path.resolve()

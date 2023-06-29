@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import dotenv from 'dotenv'
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -198,10 +197,10 @@ const OrderScreen = () => {
                 <ListGroup.Item>
 
                     {loadingPay && <Loader />}
-                    <div>
+{/*                     <div>
                         <Button onClick={ onApproveTest }>Test Pay Order</Button>
                     
-                    </div>
+                    </div> */}
                     
                   <form action='https://sandbox.payfast.co.za​/eng/process' method='post'>
                     <input type='hidden' name='merchant_id' value='10029993' />

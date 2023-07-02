@@ -161,7 +161,7 @@ const ProductEditScreen = () => {
                 <Form.Group controlId='countInStock'>
                     <Form.Label>Count In Stock</Form.Label>
                     <Form.Control type='number' placeholder='Enter Count In Stock' value={countInStock}
-                    onChange={(e) => setCountInstock(e.target.value)}></Form.Control>
+                    onChange={(e) => setCountInstock(e.target.value)} min={0}></Form.Control>
                 </Form.Group>
     
                 <Row className='py-3'>

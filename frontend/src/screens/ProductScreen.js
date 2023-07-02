@@ -180,7 +180,13 @@ const ProductScreen = (history) => {
                           <Form.Label>Comment</Form.Label>
                           <Form.Control as='textarea' row='3' value={comment} onChange={(e) => setComment(e.target.value)}></Form.Control>
                         </Form.Group>
-                          <Button type='submit' variant='primary'>
+
+                        <Row className='py-3'>
+
+                        </Row>
+
+
+                          <Button type='submit' variant='primary' disabled={!comment || !rating}>
                             submit
                           </Button>
                       </Form>

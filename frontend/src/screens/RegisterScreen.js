@@ -6,6 +6,7 @@ import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { register  } from '../actions/userActions'
 import FormContainer from '../components/FormContainer'
+//import { sendConfirmationEmail } from '../email/emailSender'
 
 
 const RegisterScreen = () => {
@@ -43,6 +44,7 @@ const RegisterScreen = () => {
             setMessage('Passwords do not match')
         }else{
         dispatch(register(name, email, password))
+        //sendConfirmationEmail(name, email)
         }
     }
 

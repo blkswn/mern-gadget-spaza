@@ -58,7 +58,8 @@ const CartScreen = () => {
                       value={item.qty}
                       onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}
                     >
-                      {Array.from(Array(item.countInStock).keys()).map(x => (
+                        {item.countInStock > 0 && 
+                      [...Array(item.countInStock).keys()].map(x => (
                         <option key={x + 1} value={x + 1}>
                           {x + 1}
                         </option>

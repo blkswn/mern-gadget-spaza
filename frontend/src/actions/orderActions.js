@@ -1,4 +1,4 @@
-import { CART_RESET } from '../constants/cartConstants'
+
 import { ORDER_CREATE_FAIL, ORDER_CREATE_REQUEST, ORDER_CREATE_SUCCESS, ORDER_DELIVER_FAIL, ORDER_DELIVER_REQUEST, ORDER_DELIVER_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_LIST_FAIL, ORDER_LIST_MY_FAIL, ORDER_LIST_MY_REQUEST, ORDER_LIST_MY_SUCCESS, ORDER_LIST_REQUEST, ORDER_LIST_SUCCESS, ORDER_PAY_FAIL, ORDER_PAY_REQUEST, ORDER_PAY_SUCCESS } from '../constants/orderConstants'
 import axios from 'axios'
 
@@ -16,6 +16,12 @@ export const createOrder = (order) => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`
             },
         }
+
+        if (!order.paymentMethod) {
+            throw new Error('Please select a payment method in the previous step');
+          }
+
+
         const { data } = await axios.post(`/api/orders`, order, config)
 
         dispatch({
@@ -31,7 +37,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
             payload: error.response && error.response.data && error.response.data.message 
             ? error.response.data.message
             : error.response && error.response.status === 401
-            ? 'Invalid email or password'//use a default message for 401 Unauthorized status
+            ? 'Could not create order'//use a default message for 401 Unauthorized status
             : error.message,
             
         })
@@ -107,7 +113,7 @@ export const payOrder = (orderId,  paymentResult) => async (dispatch, getState) 
             payload: { ...data, isPaid: true},
         })
 
-        dispatch({ type: CART_RESET });
+        
 
 
     } catch (error) {

@@ -25,6 +25,8 @@ const RegisterScreen = () => {
 
     const { loading, error, userInfo } = userRegister
 
+    
+
 
     const location = useLocation()
 
@@ -34,6 +36,11 @@ const RegisterScreen = () => {
     useEffect(() => {
         if(userInfo){
             navigate(redirect)
+        }
+
+        return () => {
+             // Clear the error message when component is unmounted
+            setMessage(null);
         }
 
     }, [navigate, userInfo, redirect])

@@ -92,7 +92,7 @@ const PlaceOrderScreen = () => {
                                                 fluid rounded/>
                                             </Col>
                                             <Col>
-                                            <Link to={`/product/${item.produt}`}>
+                                            <Link to={`/product/${item.product}`}>
                                                 {item.name}
                                             </Link>
                                             </Col>

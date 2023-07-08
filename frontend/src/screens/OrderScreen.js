@@ -7,6 +7,7 @@ import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { getOrderDetails, payOrder, deliverOrder } from '../actions/orderActions';
 import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants';
+import { resetCart } from '../actions/cartActions';
 
 const OrderScreen = () => {
   const navigate = useNavigate();
@@ -51,10 +52,16 @@ const OrderScreen = () => {
         console.error(error);
       }
     };
+    
+
+    const handleCartReset = () => {
+      dispatch(resetCart());
+    }
 
     if (!order || successPay || successDeliver || order._id !== orderId) {
       dispatch({ type: ORDER_PAY_RESET });
       dispatch({ type: ORDER_DELIVER_RESET });
+      handleCartReset();
       dispatch(getOrderDetails(orderId));
     } else if (!order.isPaid) {
       fetchPayFastClientId();
@@ -202,9 +209,9 @@ const OrderScreen = () => {
                     
                     </div> */}
                     
-                  <form action='https://www.payfast.co.za/eng/process' method='post'>
-                    <input type='hidden' name='merchant_id' value='16166479' />
-                    <input type='hidden' name='merchant_key' value='3kgtbhsdrjndv'/>
+                  <form action='https://sandbox.payfast.co.za/eng/process' method='post'>
+                    <input type='hidden' name='merchant_id' value='10029993' />
+                    <input type='hidden' name='merchant_key' value='c95kh22hfchfw'/>
                     <input type="hidden" name="return_url" value={`https://www.gadgetspaza.co.za/order/${order._id}`}/>
                     <input type="hidden" name="cancel_url" value={`https://www.gadgetspaza.co.za/order/${order._id}`}/>
                     <input type="hidden" name="notify_url" value={`https://www.gadgetspaza.co.za/api/orders/${order._id}/payfast`}/>

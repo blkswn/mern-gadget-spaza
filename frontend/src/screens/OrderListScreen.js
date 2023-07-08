@@ -40,8 +40,11 @@ const OrderListScreen = () => {
         <Table striped bordered hover responsive className='table-sm'>
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>ID</th>
                     <th>USER</th>
+                    <th>ORDER NAME</th>
+                    <th>QTY</th>
                     <th>DATE</th>
                     <th>TOTAL PRICE</th>
                     <th>PAID</th>
@@ -50,10 +53,23 @@ const OrderListScreen = () => {
                 </tr>
             </thead>
             <tbody>
-                {orders.map((order) => (
+                {orders.map((order, index) => (
                     <tr key={order._id}>
+                        <td>{index + 1}</td>
                         <td>{order._id}</td>
                         <td>{order.user && order.user.name}</td>
+                        <td>
+                             {/* Display the name of each order item */}
+                            {order.orderItems.map((item) => (
+                             <div key={item._id}>{item.name}</div>
+                            ))}
+                        </td>
+                        <td>
+                             {/* Display the quantity of each order item */}
+                            {order.orderItems.map((item) => (
+                             <div key={item._id}>{item.qty}</div>
+                            ))}
+                        </td>
                         <td>{ order.createdAt ? order.createdAt.slice(0, 10) : '_'}</td>
                         <td>R{order.totalPrice}</td>
                         <td>

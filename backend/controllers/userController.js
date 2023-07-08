@@ -34,6 +34,11 @@ const registerUser = asyncHandler(async (req, res) => {
     //body data
   const { name, email, password } = req.body
 
+  if (!name || !email || !password) {
+   res.status(400);
+   throw new Error('Name, email, and password are required.');
+ }
+
  const userExists = await User.findOne({ email})
 
  if(userExists){

@@ -209,14 +209,16 @@ const OrderScreen = () => {
                     
                     </div> */}
                     
-                  <form action='https://sandbox.payfast.co.za/eng/process' method='post'>
-                    <input type='hidden' name='merchant_id' value='10029993' />
-                    <input type='hidden' name='merchant_key' value='c95kh22hfchfw'/>
+                  <form action='https://www.payfast.co.za/eng/process' method='post'>
+                    <input type='hidden' name='merchant_id' value='16166479' />
+                    <input type='hidden' name='merchant_key' value='3kgtbhsdrjndv'/>
                     <input type="hidden" name="return_url" value={`https://www.gadgetspaza.co.za/order/${order._id}`}/>
                     <input type="hidden" name="cancel_url" value={`https://www.gadgetspaza.co.za/order/${order._id}`}/>
                     <input type="hidden" name="notify_url" value={`https://www.gadgetspaza.co.za/api/orders/${order._id}/payfast`}/>
                     <input type='hidden' name='amount' value={order.totalPrice.toFixed(2)} />
-                    <input type='hidden' name='item_name' value={`${order.orderItems.name}`} />
+                    <input type='hidden' name='item_name' value=  {order.orderItems.map((item) => (
+                             <div key={item._id}>{item.name}</div>
+                            ))} />
                     <input
                             type='submit'
                             value='Pay with PayFast'
